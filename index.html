@@ -16,12 +16,19 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            text-align: center;
         }
 
         .button-container {
             display: flex;
             flex-direction: column;
             gap: 20px;
+        }
+
+        .button-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .yellow-button {
@@ -44,24 +51,59 @@
         .yellow-button:hover {
             transform: scale(1.1);
         }
+
+        .countdown {
+            font-size: 24px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="button-container">
-        <button class="yellow-button" onclick="location.href='https://t.me/hamsterkeys'">Keys 1</button>
-        <button class="yellow-button" onclick="location.href='https://t.me/hamsterfreekeys'">Keys 2</button>
-        <button class="yellow-button" onclick="location.href='https://t.me/keyshamster'">Keys 3</button>
-        <button class="yellow-button" onclick="location.href='https://t.me/hamskeys'">Keys 4</button>
+        <div class="button-wrapper">
+            <button class="yellow-button" id="button1" onclick="location.href='https://t.me/hamsterkeys'">Keys 1</button>
+            <div class="countdown" id="countdown1">30</div>
+        </div>
+        <div class="button-wrapper">
+            <button class="yellow-button" id="button2" onclick="location.href='https://t.me/hamsterfreekeys'">Keys 2</button>
+            <div class="countdown" id="countdown2">30</div>
+        </div>
+        <div class="button-wrapper">
+            <button class="yellow-button" id="button3" onclick="location.href='https://t.me/keyshamster'">Keys 3</button>
+            <div class="countdown" id="countdown3">30</div>
+        </div>
+        <div class="button-wrapper">
+            <button class="yellow-button" id="button4" onclick="location.href='https://t.me/hamskeys'">Keys 4</button>
+            <div class="countdown" id="countdown4">30</div>
+        </div>
     </div>
 
     <script>
-        // 30 saniye sonra butonları aktif hale getir
-        setTimeout(function() {
-            const buttons = document.querySelectorAll('.yellow-button');
-            buttons.forEach(button => {
-                button.classList.add('active');
-            });
-        }, 30000); // 30,000 milisaniye = 30 saniye
+        function startCountdown(buttonId, countdownId) {
+            let button = document.getElementById(buttonId);
+            let countdownElement = document.getElementById(countdownId);
+            let seconds = 30;
+
+            function updateCountdown() {
+                countdownElement.textContent = seconds;
+                if (seconds === 0) {
+                    // 30 saniye tamamlandığında butonu aktif hale getir
+                    button.classList.add('active');
+                    return;
+                }
+                seconds--;
+                setTimeout(updateCountdown, 1000); // 1 saniye bekle ve geri sayımı güncelle
+            }
+
+            updateCountdown(); // Geri sayımı başlat
+        }
+
+        // Her buton için geri sayımı başlat
+        startCountdown('button1', 'countdown1');
+        startCountdown('button2', 'countdown2');
+        startCountdown('button3', 'countdown3');
+        startCountdown('button4', 'countdown4');
     </script>
 </body>
-</html>
+        </html>
+        
