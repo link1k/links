@@ -57,28 +57,32 @@
             margin-top: 10px;
         }
     </style>
+    <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
 </head>
 <body>
     <div class="button-container">
         <div class="button-wrapper">
-            <button class="yellow-button" id="button1" onclick="location.href='https://t.me/hamsterkeys'">Keys 1</button>
+            <button class="yellow-button" id="button1" onclick="showAd('button1')">Keys 1</button>
             <div class="countdown" id="countdown1">30</div>
         </div>
         <div class="button-wrapper">
-            <button class="yellow-button" id="button2" onclick="location.href='https://t.me/hamsterfreekeys'">Keys 2</button>
+            <button class="yellow-button" id="button2" onclick="showAd('button2')">Keys 2</button>
             <div class="countdown" id="countdown2">30</div>
         </div>
         <div class="button-wrapper">
-            <button class="yellow-button" id="button3" onclick="location.href='https://t.me/keyshamster'">Keys 3</button>
+            <button class="yellow-button" id="button3" onclick="showAd('button3')">Keys 3</button>
             <div class="countdown" id="countdown3">30</div>
         </div>
         <div class="button-wrapper">
-            <button class="yellow-button" id="button4" onclick="location.href='https://t.me/hamskeys'">Keys 4</button>
+            <button class="yellow-button" id="button4" onclick="showAd('button4')">Keys 4</button>
             <div class="countdown" id="countdown4">30</div>
         </div>
     </div>
 
     <script>
+        // Initialize Adsgram with your block ID
+        const AdController = window.Adsgram.init({ blockId: "1772" });
+
         function startCountdown(buttonId, countdownId) {
             let button = document.getElementById(buttonId);
             let countdownElement = document.getElementById(countdownId);
@@ -98,6 +102,22 @@
             updateCountdown(); // Geri sayımı başlat
         }
 
+        function showAd(buttonId) {
+            let button = document.getElementById(buttonId);
+            if (button.classList.contains('active')) {
+                AdController.show().then(() => {
+                    // Kullanıcı reklamı izledikten sonra yapılacak işlemler
+                    alert('Reward');
+                    window.location.href = button.getAttribute('onclick').split("'")[1];
+                }).catch((result) => {
+                    // Reklam gösteriminde bir hata oluşursa
+                    alert(JSON.stringify(result, null, 4));
+                });
+            } else {
+                alert('Please wait until the countdown is complete.');
+            }
+        }
+
         // Her buton için geri sayımı başlat
         startCountdown('button1', 'countdown1');
         startCountdown('button2', 'countdown2');
@@ -105,5 +125,5 @@
         startCountdown('button4', 'countdown4');
     </script>
 </body>
-        </html>
-        
+    </html>
+                                                         
