@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Page</title>
+    <style>
+        /* Second Page Styles */
+        body.second-page {
+            background-image: url('https://iili.io/dlNbASp.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .yellow-button {
+            background-color: yellow;
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .yellow-button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="second-page">
+    <div class="button-container">
+        <button class="yellow-button" onclick="location.href='https://t.me/hamsterkeys'">Keys 1</button>
+        <button class="yellow-button" onclick="location.href='https://t.me/hamsterfreekeys'">Keys 2</button>
+        <button class="yellow-button" onclick="location.href='https://t.me/keyshamster'">Keys 3</button>
+        <button class="yellow-button" onclick="location.href='https://t.me/hamskeys'">Keys 4</button>
+    </div>
+</body>
+</html>
